@@ -48,6 +48,18 @@
      <ENTRY>Error while retrieving travel records</ENTRY>
      <LENGTH>74</LENGTH>
     </item>
+    <item>
+     <ID>I</ID>
+     <KEY>007</KEY>
+     <ENTRY>Reinitializing travel data</ENTRY>
+     <LENGTH>52</LENGTH>
+    </item>
+    <item>
+     <ID>I</ID>
+     <KEY>008</KEY>
+     <ENTRY>Records deleted</ENTRY>
+     <LENGTH>25</LENGTH>
+    </item>
    </TPOOL>
   </asx:values>
  </asx:abap>

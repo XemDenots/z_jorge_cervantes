@@ -22,6 +22,12 @@
 *   1. Creation                                                        *
 *      use of CASE distinction                                         *
 *&---------------------------------------------------------------------*
+* MOD-001 | 09.08.2024 | Jorge_Cervantes   | CR000001  | TRLK919406    *
+* Project        : SDCAug2024                                          *
+* Description    :                                                     *
+*   1. Creation                                                        *
+*      Insert and modify in 1 instruction                              *
+*&---------------------------------------------------------------------*
 CLASS zjcc_travelgenerator DEFINITION
   PUBLIC
   FINAL
@@ -38,10 +44,19 @@ ENDCLASS.
 
 CLASS zjcc_travelgenerator IMPLEMENTATION.
   METHOD if_oo_adt_classrun~main.
-    out->write( TEXT-001 ).
+    "{ + mod-001
+    out->write( TEXT-007 ).
+    DELETE FROM zjct_travel.
+    out->write( |{ TEXT-008 } { sy-dbcnt }| ).
 
+    " } + mod-001
+    out->write( TEXT-001 ).
+    "{ + mod-001
+    MODIFY zjct_travel FROM (
+"} - mod-001
     SELECT FROM /dmo/travel
-      FIELDS client,
+      FIELDS
+             " client, " -mod-001
              travel_id,
              description,
              total_price,
@@ -51,14 +66,19 @@ CLASS zjcc_travelgenerator IMPLEMENTATION.
                WHEN 'P' THEN 'O'
                WHEN 'B' THEN 'A'
                ELSE 'X'
-             END                 AS status
-      INTO TABLE @DATA(lt_travel).
+             END AS status
+      " INTO TABLE @DATA(lt_travel). " - mod-001
+"{ + mod-001
+     ).
+    "} + mod-001
     IF sy-subrc = 0.
-      out->write( |{ TEXT-002 } { sy-dbcnt }| ).
-      out->write( TEXT-003 ).
-
-      MODIFY zjct_travel
-             FROM TABLE @lt_travel.
+      "{ - mod-001
+*      out->write( |{ TEXT-002 } { sy-dbcnt }| ).
+*      out->write( TEXT-003 ).
+*
+*      MODIFY zjct_travel
+*             FROM TABLE @lt_travel.
+      "} - mod-001
 
       IF sy-subrc = 0.
         out->write( |{ TEXT-004 } { sy-dbcnt }| ).
