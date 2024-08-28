@@ -28,6 +28,12 @@
 *   1. Creation                                                        *
 *      Insert and modify in 1 instruction                              *
 *&---------------------------------------------------------------------*
+* MOD-003 | 22.08.2024 | Jorge_Cervantes   | CR000002  | TRLK919406    *
+* Project        : SDCAug2024                                          *
+* Description    :                                                     *
+*      Week 3 Task                                                     *
+*   1. Table duplicated, fill table after wizard                       *
+*&---------------------------------------------------------------------*
 CLASS zjcc_travelgenerator DEFINITION
   PUBLIC
   FINAL
@@ -38,6 +44,7 @@ CLASS zjcc_travelgenerator DEFINITION
     INTERFACES if_oo_adt_classrun .
   PROTECTED SECTION.
   PRIVATE SECTION.
+
 ENDCLASS.
 
 
@@ -89,5 +96,41 @@ CLASS zjcc_travelgenerator IMPLEMENTATION.
     ELSE.
       out->write( TEXT-006 ).
     ENDIF.
+
+**********************************************************************
+    out->write( TEXT-007 ).
+    DELETE FROM zjct_travel_m1.
+    out->write( |{ TEXT-008 } { sy-dbcnt }| ).
+    out->write( TEXT-001 ).
+
+    MODIFY zjct_travel_m1 FROM (
+
+    SELECT FROM /dmo/travel
+      FIELDS
+             " client, " -mod-001
+             travel_id,
+             description,
+             total_price,
+             currency_code,
+             CASE status
+               WHEN 'N' THEN 'O'
+               WHEN 'P' THEN 'O'
+               WHEN 'B' THEN 'A'
+               ELSE 'X'
+             END AS status
+    ).
+    IF sy-subrc = 0.
+
+      IF sy-subrc = 0.
+        out->write( |{ TEXT-004 } { sy-dbcnt }| ).
+      ELSE.
+        out->write( TEXT-005 ).
+      ENDIF.
+
+    ELSE.
+      out->write( TEXT-006 ).
+    ENDIF.
+
   ENDMETHOD.
+
 ENDCLASS.

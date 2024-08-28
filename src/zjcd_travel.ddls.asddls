@@ -44,18 +44,20 @@ define view entity zjcd_travel
   as select from zjct_travel
   association to /DMO/I_Overall_Status_VH as _StatText on $projection.Status = _StatText.OverallStatus
 {
-  key travel_id                          as TravelId,
-      description                        as Description,
+  key travel_id     as TravelId,
+      description   as Description,
       @Semantics.amount.currencyCode: 'CurrencyCode'
-      total_price                        as TotalPrice,
-      currency_code                      as CurrencyCode,
-      status                             as Status,
+      total_price   as TotalPrice,
+      currency_code as CurrencyCode,
+      status        as Status,
       // { + MOD.001
       concat_with_space(
         cast(
           total_price as abap.char(19)),
           currency_code,
-          1)                             as TotalWithCurrency,
-      _StatText._Text[1:Language=$session.system_language].Text as StatusText
+          1)        as TotalWithCurrency,
+      _StatText.
+        _Text[1:Language=$session.system_language].
+          Text      as StatusText
       // } + MOD.001
 }

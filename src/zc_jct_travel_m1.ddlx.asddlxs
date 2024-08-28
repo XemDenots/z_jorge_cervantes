@@ -1,0 +1,268 @@
+@Metadata.layer: #CORE
+// {  - MOD-004
+//@UI.headerInfo.title.type: #STANDARD
+//@UI.headerInfo.title.value: 'TravelId'
+//@UI.headerInfo.description.type: #STANDARD
+//@UI.headerInfo.description.value: 'TravelId'
+// } - MOD-004
+@UI:{
+      headerInfo:{
+        title: {
+          type: #STANDARD,
+          value: 'TravelId'
+        },
+        typeName: 'Travel',
+        typeNamePlural: 'Travels',
+        description: {
+          type: #STANDARD,
+          value: 'Description'
+        }
+      }
+}
+annotate view ZC_JCT_TRAVEL_M1 with
+{
+  @UI.facet: [{
+    id: 'GeneralInfo',
+    purpose: #STANDARD,
+    position: 10,
+    type: #IDENTIFICATION_REFERENCE
+  }]
+
+
+  @UI:{
+        lineItem: [ {
+          position: 10 ,
+          label: 'Travel ID'
+          } ],
+        selectionField: [{
+          position: 20
+        }],
+        identification: [{
+          position: 10,
+          label: 'Travel ID'
+        }]
+      }
+  TravelId;
+
+
+  @UI:{
+        lineItem: [ {
+          position: 20 ,
+          label: 'Description'
+          } ],
+        identification: [{
+          position: 20,
+          label: 'Description'
+        }]
+      }
+  Description;
+
+  @UI.lineItem: [ {
+    position: 30 ,
+    label: 'Total Price'
+  } ]
+  TotalPrice;
+
+  @UI.lineItem: [ {
+    position: 40 ,
+    label: 'Currency Code'
+  } ]
+  CurrencyCode;
+
+  @UI:{
+        lineItem: [ {
+          position: 50 ,
+          label: 'Status'
+          } ]
+          ,
+        selectionField: [{
+          position: 10
+          }],
+    identification: [{
+      position: 40,
+      criticality: 'StatusCriticality',
+      label: 'Status'
+    }]
+      }
+
+  Status;
+
+  @UI:  {
+    lineItem: [{
+      position: 60,
+      label: 'Total with Currency'
+    }],
+    identification: [{
+      position: 30,
+      label: 'Total with Currency'
+    }]    
+  }
+
+  TotalWithCurrency;
+
+  @UI:{
+        lineItem: [ {
+          position: 70 ,
+          label: 'Status Text'
+          } ]
+      }
+  StatusText;
+
+//      @UI.facet: [ {
+//        label: 'General Information',
+//        id: 'GeneralInfo',
+//        purpose: #STANDARD,
+//        position: 10 ,
+//        type: #IDENTIFICATION_REFERENCE
+//      } ]
+//      @UI.identification: [ {
+//        position: 10 ,
+//        label: 'Travel ID'
+//      } ]
+//  
+//      @UI.lineItem: [ {
+//        position: 10 ,
+//        label: 'Travel ID'
+//      } ]
+//  
+//      @UI.selectionField: [ {
+//        position: 10
+//      } ]
+//      TravelId;
+//  
+//      @UI.identification: [ {
+//        position: 20 ,
+//        label: 'Description'
+//      } ]
+//  
+//      @UI.lineItem: [ {
+//        position: 20 ,
+//        label: 'Description'
+//      } ]
+//  
+//      @UI.selectionField: [ {
+//        position: 20
+//      } ]
+//      Description;
+//  
+//      @UI.identification: [ {
+//        position: 30 ,
+//        label: 'Total Price'
+//      } ]
+//  
+//      @UI.lineItem: [ {
+//        position: 30 ,
+//        label: 'Total Price'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 30
+//      } ]
+//      TotalPrice;
+//  
+//      @UI.identification: [ {
+//        position: 40 ,
+//        label: 'Travel Status'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 40 ,
+//        label: 'Travel Status'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 40
+//      } ]
+//      Status;
+//  
+//  
+//      @UI.identification: [ {
+//        position: 50 ,
+//        label: 'Total with Currency'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 50 ,
+//        label: 'Total with Currency'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 50
+//      } ]
+//      TotalWithCurrency;
+//  
+//  
+//      @UI.identification: [ {
+//        position: 60 ,
+//        label: 'Status Text'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 60 ,
+//        label: 'Status Text'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 60
+//      } ]
+//      StatusText;
+//  
+//  
+//      @UI.identification: [ {
+//        position: 50 ,
+//        label: 'Created By'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 50 ,
+//        label: 'Created By'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 50
+//      } ]
+//      LocalCreatedBy;
+//  
+//      @UI.identification: [ {
+//        position: 60 ,
+//        label: 'Created On'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 60 ,
+//        label: 'Created On'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 60
+//      } ]
+//      LocalCreatedAt;
+//  
+//      @UI.identification: [ {
+//        position: 70 ,
+//        label: 'Changed By'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 70 ,
+//        label: 'Changed By'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 70
+//      } ]
+//      LocalLastChangedBy;
+//  
+//      @UI.identification: [ {
+//        position: 80 ,
+//        label: 'Changed On'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 80 ,
+//        label: 'Changed On'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 80
+//      } ]
+//      LocalLastChangedAt;
+//  
+//      @UI.identification: [ {
+//        position: 90 ,
+//        label: 'Changed On'
+//      } ]
+//      @UI.lineItem: [ {
+//        position: 90 ,
+//        label: 'Changed On'
+//      } ]
+//      @UI.selectionField: [ {
+//        position: 90
+//      } ]
+//      LastChangedAt;
+}

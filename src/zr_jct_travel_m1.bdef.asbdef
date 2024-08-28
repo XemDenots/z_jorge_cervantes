@@ -1,0 +1,50 @@
+managed implementation in class ZBP_R_JCT_TRAVEL_M1 unique;
+strict ( 2 );
+with draft;
+define behavior for ZR_JCT_TRAVEL_M1 alias ZrJctTravelM1
+persistent table ZJCT_TRAVEL_M1
+draft table ZJCT_TRAVEL_M1_D
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   TravelId;
+
+  field ( readonly )
+   TotalWithCurrency,
+   LocalCreatedBy,
+   LocalCreatedAt,
+   LocalLastChangedBy,
+   LocalLastChangedAt,
+   LastChangedAt;
+
+  field ( readonly : update )
+   TravelId;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZJCT_TRAVEL_M1
+  {
+    TravelId = travel_id;
+    Description = description;
+    TotalPrice = total_price;
+    CurrencyCode = currency_code;
+    Status = status;
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}
